@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Control Wedding - Undangan Digital</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>💍 Control Wedding</h1>
+            <p>Kelola undangan pernikahan Anda</p>
+        </header>
+
+        <nav class="tabs">
+            <button class="tab-btn active" data-tab="info">Informasi</button>
+            <button class="tab-btn" data-tab="template">Template</button>
+            <button class="tab-btn" data-tab="guests">Tamu</button>
+        </nav>
+
+        <!-- Tab Informasi Mempelai -->
+        <div class="tab-content active" id="info">
+            <div class="card">
+                <h2>Informasi Mempelai</h2>
+                <form id="formInfo">
+                    <div class="form-group">
+                        <label>Nama Mempelai</label>
+                        <input type="text" id="namaMempelai" placeholder="Ahmad & Siti">
+                    </div>
+                    <div class="form-group">
+                        <label>Alamat</label>
+                        <textarea id="alamat" rows="3" placeholder="Alamat lengkap acara"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Link Google Maps</label>
+                        <input type="url" id="linkMaps" placeholder="https://maps.google.com/...">
+                    </div>
+                    <div class="form-group">
+                        <label>Link Undangan Digital</label>
+                        <input type="url" id="linkUndangan" placeholder="https://undangan.com/...">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Simpan Informasi</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Tab Template Pesan -->
+        <div class="tab-content" id="template">
+            <div class="card">
+                <h2>Template Pesan</h2>
+                <textarea id="templatePesan" rows="15" placeholder="Masukkan template pesan..."></textarea>
+                <div class="placeholder-tags">
+                    <span class="tag-info">Gunakan placeholder: [Nama Tamu], [Nama Mempelai], [Alamat], [Link Maps], [Link Undangan]</span>
+                </div>
+                <div class="btn-group">
+                    <button onclick="resetTemplate()" class="btn btn-secondary">Reset Default</button>
+                    <button onclick="saveTemplate()" class="btn btn-primary">Simpan Template</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Preview Pesan</h2>
+                <div class="preview-box">
+                    <div id="previewContent">Preview akan muncul di sini...</div>
+                </div>
+                <input type="text" id="previewNamaTamu" placeholder="Masukkan nama tamu untuk preview" oninput="updatePreview()">
+            </div>
+        </div>
+
+        <!-- Tab Daftar Tamu -->
+        <div class="tab-content" id="guests">
+            <div class="card">
+                <h2>Tambah Tamu</h2>
+                <form id="formTamu">
+                    <div class="form-group">
+                        <label>Nama Tamu</label>
+                        <input type="text" id="tamuNama" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Nomor WhatsApp</label>
+                        <input type="tel" id="tamuPhone" placeholder="08xxxxxxxxxx" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Tambah Tamu</button>
+                </form>
+            </div>
+
+            <div class="card">
+                <h2>Daftar Tamu (<span id="totalTamu">0</span>)</h2>
+                <div id="listTamu" class="list-tamu">
+                    <div class="empty-state">Belum ada tamu. Tambahkan tamu terlebih dahulu.</div>
+                </div>
+                <div class="btn-group" id="actionButtons" style="display: none;">
+                    <button onclick="broadcastAll()" class="btn btn-primary">Broadcast Semua</button>
+                    <button onclick="clearAll()" class="btn btn-danger">Hapus Semua</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
